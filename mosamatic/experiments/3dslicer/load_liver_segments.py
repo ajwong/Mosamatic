@@ -12,14 +12,14 @@ import slicer
 # Define segment names and their corresponding file paths
 segment_names = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8"]
 file_paths = [
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_1.nii.gz",
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_2.nii.gz",
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_3.nii.gz",
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_4.nii.gz",
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_5.nii.gz",
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_6.nii.gz",
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_7.nii.gz",
-    "D:\\Mosamatic\\TotalSegmentatorOutput\\liver_segment_8.nii.gz"
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_1.nii.gz",
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_2.nii.gz",
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_3.nii.gz",
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_4.nii.gz",
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_5.nii.gz",
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_6.nii.gz",
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_7.nii.gz",
+    "D:\\Mosamatic\\TestData\\totalsegmentatortask\\liver_segment_8.nii.gz"
 ]
 
 # Define colors as RGB triples (values between 0 and 1)
@@ -33,6 +33,8 @@ colors = {
     "S7": (0.6, 0.4, 0.2),     # Brown
     "S8": (0.5, 0.5, 0.5),     # Gray
 }
+
+slicer.mrmlScene.Clear()
 
 # Create a new segmentation node
 segmentationNode = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLSegmentationNode", "LiverSegments")
