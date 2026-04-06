@@ -1,57 +1,29 @@
 services:
-
-  db:
-    image: postgres:16-alpine
-    container_name: mosamatic_postgres
-    environment:
-      - POSTGRES_DB=db
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=foobar
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d db"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    expose:
-      - 5432
-    ports:
-      - 5432:5432  # Required for running Django outside Docker but using PostgreSQL
-    volumes:
-      - mosamatic_postgres_data:/var/lib/postgresql/data
-
   web:
     build: .
-    image: brecheisen/mosamatic-web-intel:${VERSION}
+    image: 'brecheisen/mosamatic-web-intel:${VERSION:-latest}'
     platform: linux/amd64
-    container_name: mosamatic_web
     environment:
       - DATA_DIR=/data
-      - VERSION=${VERSION}
-      - POSTGRES_DB=db
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=foobar
-      - POSTGRES_HOST=postgresql-database-hofl8yo7dj78edsxy3hsaze4 # When you run Django in Docker set the host
-      - POSTGRES_PORT=5432
+      - VERSION=${VERSION:-latest}
+      - POSTGRES_DB=${POSTGRES_DB:-db}
+      - POSTGRES_USER=${POSTGRES_USER:-root}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-foobar}
+      - POSTGRES_HOST=${POSTGRES_HOST:-localhost}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
       - DOCKER=1
-      - ADMIN_USER=admin
-      - ADMIN_PASSWORD=admin
-      - SECRET_KEY=f9sd7f97sdf89as7fd98as7d9f7sad9f
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - SECRET_KEY=${SECRET_KEY:-f9sd7f97sdf89as7fd98as7d9f7sad9f}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*}
     ports:
-      - 8100:8001 # 8000:8001
+      - '8100:8001'
     volumes:
-      - mosamatic_data:/data
-      - ./pipelines:/pipelines # Can be used to process data via the REST interface
-      
-      # Specify these host directories if you want to use pipelines in Docker
-      # - D:\\Mosamatic\\DjangoTemplate\\ExamplePipeline\\input:/pipeline_data/input
-      # - D:\\Mosamatic\\TensorFlowModelFiles:/pipeline_data/TensorFlowModelFiles
-    depends_on:
-      db:
-        condition: service_healthy
+      - 'mosamatic_data:/data'
+      - './pipelines:/pipelines'
 
 volumes:
-  mosamatic_data:
-  mosamatic_postgres_data:
+  mosamatic_data: null
 
 networks:
   default:
