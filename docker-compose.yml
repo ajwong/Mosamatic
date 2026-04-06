@@ -6,10 +6,10 @@ services:
     environment:
       - DATA_DIR=/data
       - VERSION=${VERSION:-latest}
-      - POSTGRES_DB=${POSTGRES_DB:-db}
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
       - POSTGRES_USER=${POSTGRES_USER:-root}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-foobar}
-      - POSTGRES_HOST=${POSTGRES_HOST:-localhost}
+      - POSTGRES_HOST=${POSTGRES_HOST:-postgresql-database-hofl8yo7dj78edsxy3hsaze4}
       - POSTGRES_PORT=${POSTGRES_PORT:-5432}
       - DOCKER=1
       - ADMIN_USER=${ADMIN_USER:-admin}
