@@ -19,7 +19,7 @@ COPY requirements.txt /requirements.txt
 RUN pip install --upgrade pip setuptools wheel && pip install -r /requirements.txt --verbose
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN dos2unix /docker-entrypoint.sh
+RUN dos2unix /docker-entrypoint.sh && chmod +x /docker-entrypoint.sh
 
 COPY mosamatic/src/mosamatic /src
 COPY mosamatic/src/models.py /src/models.py
