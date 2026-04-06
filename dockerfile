@@ -2,9 +2,14 @@ FROM python:3.9
 
 RUN apt-get update -y && \
     apt-get install -y vim libpq-dev pkg-config cmake openssl wget git dos2unix && \
-    apt-get install -y libgl1-mesa-glx libxrender1 && \
+    apt-get install -y libgl1 libxrender1 && \
     apt-get install -y libffi-dev && \
-    apt-get install -y pigz dcm2niix && \
+    apt-get install -y pigz && \
+    wget https://github.com/rordenlab/dcm2niix/releases/latest/download/dcm2niix_lnx.zip && \
+    apt-get install -y unzip && \
+    unzip dcm2niix_lnx.zip -d /usr/local/bin && \
+    chmod +x /usr/local/bin/dcm2niix && \
+    rm dcm2niix_lnx.zip && \
     mkdir -p /data/static && \
     mkdir -p /data/filesets && \
     mkdir -p /data/uploads/{0..9} && chmod 777 -R /data/uploads
