@@ -30,7 +30,7 @@ services:
       - POSTGRES_DB=db
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=foobar
-      - POSTGRES_HOST=mosamatic_postgres # When you run Django in Docker set the host
+      - POSTGRES_HOST=postgresql-database-hofl8yo7dj78edsxy3hsaze4 # When you run Django in Docker set the host
       - POSTGRES_PORT=5432
       - DOCKER=1
       - ADMIN_USER=admin
