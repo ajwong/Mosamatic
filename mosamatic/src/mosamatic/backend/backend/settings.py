@@ -25,7 +25,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 ADMIN_USER = os.getenv('ADMIN_USER', 'admin')
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'admin')
