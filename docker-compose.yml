@@ -37,7 +37,7 @@ services:
       - ADMIN_PASSWORD=admin
       - SECRET_KEY=f9sd7f97sdf89as7fd98as7d9f7sad9f
     ports:
-      - 8000:8001
+      - 8080:8001 # 8000:8001
     volumes:
       - mosamatic_data:/data
       - ./pipelines:/pipelines # Can be used to process data via the REST interface
